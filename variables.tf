@@ -7,8 +7,3 @@ variable "region" {
   type        = string
   description = "AWS region"
 }
-
-variable "versioning" {
-  type        = bool
-  description = "Enable versioning"
-}
