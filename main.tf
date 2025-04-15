@@ -1,4 +1,3 @@
-# terraform/main.tf
 terraform {
   required_providers {
     aws = {
@@ -16,10 +15,6 @@ provider "aws" {
 
 resource "aws_s3_bucket" "bucket" {
   bucket = var.bucket_name
-
-  versioning {
-    enabled = var.versioning
-  }
 
   tags = {
     CreatedBy = "Backstage"
