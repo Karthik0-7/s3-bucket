@@ -37,7 +37,7 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
       - name: Terraform Apply
-        run: terraform apply -var bucket_name=${{ github.event.inputs.bucket_name }} -var region=${{ github.event.inputs.region }} -auto-approve
+        run: terraform apply -auto-approve
 
       - name: Assume AWS Role using OIDC
         uses: aws-actions/configure-aws-credentials@v1.7.0
