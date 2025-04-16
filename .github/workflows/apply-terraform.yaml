@@ -32,6 +32,13 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
+      - name: Terraform Format
+        run: terraform fmt
+      - name: Terraform Validate
+        run: terraform validate
+      - name: Terraform Apply
+        run: terraform apply -var bucket_name=${{ github.event.inputs.bucket_name }} -var region=${{ github.event.inputs.region }} -auto-approve
+
       - name: Assume AWS Role using OIDC
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
