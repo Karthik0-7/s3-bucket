@@ -13,10 +13,10 @@ on:
         description: "Enable Versioning"
         required: true
         type: boolean
+
 permissions:
   id-token: write
   contents: read
-  
 
 jobs:
   terraform:
@@ -29,23 +29,25 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Format
-        run: terraform fmt
-      - name: Terraform Validate
-        run: terraform validate
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-
       - name: Assume AWS Role using OIDC
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
           role-to-assume: arn:aws:iam::730335384723:role/interns_backstage_io
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ github.event.inputs.region }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Format
+        run: terraform fmt
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        env:
           TF_VAR_bucket_name: ${{ github.event.inputs.bucket_name }}
           TF_VAR_region: ${{ github.event.inputs.region }}
           TF_VAR_versioning: ${{ github.event.inputs.versioning }}
-          
