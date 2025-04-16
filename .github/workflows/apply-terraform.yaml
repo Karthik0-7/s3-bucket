@@ -37,7 +37,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::730335384723:role/interns_backstage_io
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ github.event.inputs.region }}
           TF_VAR_bucket_name: ${{ github.event.inputs.bucket_name }}
           TF_VAR_region: ${{ github.event.inputs.region }}
           TF_VAR_versioning: ${{ github.event.inputs.versioning }}
