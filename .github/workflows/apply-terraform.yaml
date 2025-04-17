@@ -32,7 +32,7 @@ jobs:
       - name: Assume AWS Role using OIDC
         uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
-          role-to-assume: arn:aws:iam::730335384723:role/Backstage.io
+          role-to-assume: arn:aws:iam::730335384723:role/Backstage-interns-role
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ github.event.inputs.region }}
 
